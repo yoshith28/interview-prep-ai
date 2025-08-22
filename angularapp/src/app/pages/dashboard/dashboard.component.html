@@ -1,0 +1,48 @@
+
+<div class="dashboard-container">
+	<h2>Interview Practice Dashboard</h2>
+	<form [formGroup]="filterForm" (ngSubmit)="onFilter()" class="filter-form">
+		<label>
+			Topic:
+			<select formControlName="topic">
+				<option value="">All</option>
+				<option value="Java">Java</option>
+				<option value="DBMS">DBMS</option>
+				<option value="System Design">System Design</option>
+			</select>
+		</label>
+		<label>
+			Date:
+			<input type="date" formControlName="date" />
+		</label>
+		<button type="submit">Filter</button>
+		<button type="button" (click)="onReset()">Reset</button>
+	</form>
+
+	<div *ngIf="!filteredSessions.length" class="no-sessions">No sessions found for the selected filter.</div>
+
+	<div *ngFor="let session of filteredSessions" class="session-card">
+		<div class="session-header">
+			<span class="session-topic">Topic: {{ session.topic }}</span>
+			<span class="session-date">Date: {{ session.date }}</span>
+		</div>
+		<table class="session-table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Question</th>
+					<th>Your Answer</th>
+					<th>Feedback</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let q of session.questions; let i = index">
+					<td>{{ i + 1 }}</td>
+					<td>{{ q }}</td>
+					<td>{{ session.answers[i] }}</td>
+					<td>{{ session.feedback[i] }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,45 @@
+
+<div class="auth-form-container">
+	<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+		<h2>Register</h2>
+		<div class="form-group">
+			<label for="username">Username</label>
+					<input id="username" type="text" formControlName="username" [class.invalid]="f['username'].invalid && (f['username'].dirty || f['username'].touched)" placeholder="Choose a username" />
+					<div class="error" *ngIf="f['username'].invalid && (f['username'].dirty || f['username'].touched)">
+						<span *ngIf="f['username'].errors?.['required']">Username is required.</span>
+						<span *ngIf="f['username'].errors?.['minlength']">Username must be at least 3 characters.</span>
+					</div>
+		</div>
+		<div class="form-group">
+			<label for="email">Email</label>
+					<input id="email" type="email" formControlName="email" [class.invalid]="f['email'].invalid && (f['email'].dirty || f['email'].touched)" placeholder="Enter your email" />
+					<div class="error" *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)">
+						<span *ngIf="f['email'].errors?.['required']">Email is required.</span>
+						<span *ngIf="f['email'].errors?.['email']">Enter a valid email.</span>
+					</div>
+		</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input id="password" type="password" formControlName="password" [class.invalid]="f['password'].invalid && (f['password'].dirty || f['password'].touched)" placeholder="Create a password" />
+				<div class="error" *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
+					<span *ngIf="f['password'].errors?.['required']">Password is required.</span>
+					<span *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters.</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="confirmPassword">Confirm Password</label>
+				<input id="confirmPassword" type="password" formControlName="confirmPassword" [class.invalid]="f['confirmPassword'].invalid && (f['confirmPassword'].dirty || f['confirmPassword'].touched)" placeholder="Re-enter your password" />
+				<div class="error" *ngIf="f['confirmPassword'].invalid && (f['confirmPassword'].dirty || f['confirmPassword'].touched)">
+					<span *ngIf="f['confirmPassword'].errors?.['required']">Confirm password is required.</span>
+					<span *ngIf="f['confirmPassword'].errors?.['mismatch']">Passwords do not match.</span>
+				</div>
+			</div>
+		<div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+		<div class="success" *ngIf="successMsg">{{ successMsg }}</div>
+		<button type="submit" [disabled]="loading || registerForm.invalid">
+			<span *ngIf="!loading">Register</span>
+			<span *ngIf="loading" class="spinner"></span>
+		</button>
+		<div class="switch-link">Already have an account? <a routerLink="/login">Login</a></div>
+	</form>
+</div>

@@ -1,0 +1,121 @@
+
+<style>
+  .navbar {
+    background: linear-gradient(90deg, #1976d2 60%, #2196f3 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+  }
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .navbar-brand svg {
+    height: 32px;
+    width: 32px;
+    vertical-align: middle;
+  }
+  .navbar-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    transition: max-height 0.3s;
+  }
+  .navbar-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    position: relative;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .navbar-link.active, .navbar-link:hover {
+    background: rgba(255,255,255,0.15);
+    color: #fffde7;
+  }
+  .navbar-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+  }
+  .navbar-toggle span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    margin: 4px 0;
+    background: white;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+  @media (max-width: 800px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0.5rem 1rem;
+    }
+    .navbar-links {
+      flex-direction: column;
+      width: 100%;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      background: linear-gradient(90deg, #1976d2 60%, #2196f3 100%);
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+    }
+    .navbar-links.open {
+      max-height: 300px;
+      padding-bottom: 0.5rem;
+    }
+    .navbar-link {
+      width: 100%;
+      padding: 0.75rem 0.5rem;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .navbar-toggle {
+      display: flex;
+      margin-left: auto;
+    }
+  }
+</style>
+
+<nav class="navbar">
+  <div class="navbar-brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#fff" opacity="0.15"/><path d="M16 6l-7 2.8 1.1 9.8L16 26l5.9-7.4 1.1-9.8z" fill="#fffde7"/><path d="M16 6v20l5.9-7.4 1.1-9.8z" fill="#fff9c4"/></svg>
+    Interview Prep
+  </div>
+  <button class="navbar-toggle" aria-label="Toggle navigation" (click)="showMenu = !showMenu">
+    <span [ngStyle]="{'transform': showMenu ? 'rotate(45deg) translate(5px, 5px)' : 'none'}"></span>
+    <span [ngStyle]="{'opacity': showMenu ? 0 : 1}"></span>
+    <span [ngStyle]="{'transform': showMenu ? 'rotate(-45deg) translate(7px, -6px)' : 'none'}"></span>
+  </button>
+  <div class="navbar-links" [class.open]="showMenu">
+    <a routerLink="/login" routerLinkActive="active" class="navbar-link">Login</a>
+    <a routerLink="/register" routerLinkActive="active" class="navbar-link">Register</a>
+    <a routerLink="/interview" routerLinkActive="active" class="navbar-link">Interview</a>
+    <a routerLink="/dashboard" routerLinkActive="active" class="navbar-link">Dashboard</a>
+  </div>
+</nav>
+
+<main style="padding: 2rem; min-height: 80vh; background: #f7f7f7;">
+  <router-outlet></router-outlet>
+</main>

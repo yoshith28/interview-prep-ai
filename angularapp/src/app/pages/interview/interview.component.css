@@ -1,0 +1,209 @@
+/* Modal Styles */
+.modal {
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(25, 118, 210, 0.18);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: fadeIn 0.2s;
+}
+.modal-content {
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 8px 32px rgba(25, 118, 210, 0.18), 0 1.5px 8px rgba(25, 118, 210, 0.10);
+	padding: 2.2rem 2.5rem 1.7rem 2.5rem;
+	min-width: 320px;
+	max-width: 90vw;
+	max-height: 80vh;
+	overflow-y: auto;
+	position: relative;
+	animation: popIn 0.25s cubic-bezier(.68,-0.55,.27,1.55);
+}
+.modal-content h3 {
+	margin-top: 0;
+	color: #1976d2;
+	font-size: 1.3rem;
+	font-weight: 700;
+	margin-bottom: 1rem;
+}
+.modal-content p {
+	font-size: 1.08rem;
+	color: #222;
+	margin-bottom: 0;
+}
+.close {
+	position: absolute;
+	top: 1.1rem;
+	right: 1.3rem;
+	font-size: 1.7rem;
+	color: #1976d2;
+	cursor: pointer;
+	font-weight: 700;
+	transition: color 0.2s;
+}
+.close:hover {
+	color: #e53935;
+}
+@keyframes fadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+@keyframes popIn {
+	0% { transform: scale(0.85); opacity: 0.5; }
+	100% { transform: scale(1); opacity: 1; }
+}
+.modal-btn {
+	background: linear-gradient(90deg, #1976d2 60%, #2196f3 100%);
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 0.35rem 1.1rem;
+	font-size: 0.98rem;
+	font-weight: 500;
+	margin-left: 0.7rem;
+	margin-top: 0.3rem;
+	cursor: pointer;
+	transition: background 0.2s, box-shadow 0.2s;
+	box-shadow: 0 1.5px 6px rgba(25, 118, 210, 0.10);
+}
+.modal-btn:hover {
+	background: #125699;
+}
+/* Interview Page Styles */
+.interview-container {
+	max-width: 700px;
+	margin: 2rem auto;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 2px 16px rgba(25, 118, 210, 0.08);
+	padding: 2rem 2.5rem 1.5rem 2.5rem;
+}
+.topic-select {
+	text-align: center;
+}
+.topic-list {
+	display: flex;
+	justify-content: center;
+	gap: 1.5rem;
+	margin-top: 1.5rem;
+}
+.topic-list button {
+	background: linear-gradient(90deg, #1976d2 60%, #2196f3 100%);
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 0.7rem 1.5rem;
+	font-size: 1.1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s, box-shadow 0.2s;
+	box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+}
+.topic-list button:hover {
+	background: #125699;
+}
+.interview-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+}
+.reset-btn {
+	background: #e3e3e3;
+	color: #1976d2;
+	border: none;
+	border-radius: 5px;
+	padding: 0.5rem 1.2rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+.reset-btn:hover {
+	background: #d1eaff;
+}
+.loading {
+	text-align: center;
+	color: #1976d2;
+	font-weight: 600;
+	margin: 2rem 0;
+}
+.question-block {
+	margin-bottom: 2rem;
+}
+.question {
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+	color: #1976d2;
+}
+textarea {
+	width: 100%;
+	min-height: 60px;
+	padding: 0.7rem;
+	border: 1.5px solid #bdbdbd;
+	border-radius: 5px;
+	font-size: 1rem;
+	background: #fafbfc;
+	margin-bottom: 0.3rem;
+	transition: border 0.2s;
+}
+textarea:focus {
+	border-color: #1976d2;
+	outline: none;
+}
+.error {
+	color: #e53935;
+	font-size: 0.92rem;
+	margin-bottom: 0.2rem;
+}
+.feedback {
+	color: #388e3c;
+	font-size: 0.98rem;
+	margin-top: 0.2rem;
+}
+.submit-btn {
+	width: 100%;
+	padding: 0.7rem;
+	background: linear-gradient(90deg, #1976d2 60%, #2196f3 100%);
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	font-size: 1.1rem;
+	font-weight: 600;
+	cursor: pointer;
+	margin-top: 0.5rem;
+	transition: background 0.2s, box-shadow 0.2s;
+	box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+}
+.submit-btn[disabled] {
+	opacity: 0.7;
+	cursor: not-allowed;
+}
+.spinner {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 3px solid #fff;
+	border-top: 3px solid #1976d2;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+.done-msg {
+	text-align: center;
+	color: #1976d2;
+	font-weight: 600;
+	margin-top: 1.5rem;
+}
+@media (max-width: 700px) {
+	.interview-container {
+		padding: 1.2rem 0.7rem 1rem 0.7rem;
+	}
+}

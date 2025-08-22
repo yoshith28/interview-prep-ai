@@ -1,0 +1,46 @@
+
+<div class="interview-container">
+	<div *ngIf="!selectedTopic" class="topic-select">
+		<h2>Select a Topic to Start Your Interview</h2>
+		<div class="topic-list">
+			<button *ngFor="let topic of topics" (click)="selectTopic(topic)">{{ topic }}</button>
+		</div>
+	</div>
+
+	<div *ngIf="selectedTopic">
+		<div class="interview-header">
+			<h2>Interview: {{ selectedTopic }}</h2>
+			<button class="reset-btn" (click)="resetInterview()">Change Topic</button>
+		</div>
+		<div *ngIf="loadingQuestions" class="loading">Loading questions...</div>
+
+			<form *ngIf="!loadingQuestions && questions.length" [formGroup]="answerForm" (ngSubmit)="submitAnswers()" autocomplete="off">
+				<div formArrayName="answers">
+					<div *ngFor="let q of questions; let i = index" class="question-block">
+						<div class="question">Q{{ i+1 }}: {{ q }}</div>
+						<textarea formControlName="{{i}}" rows="3" placeholder="Type your answer here..."></textarea>
+						<div class="error" *ngIf="answersArray.controls[i].invalid && (answersArray.controls[i].dirty || answersArray.controls[i].touched)">
+							Answer is required.
+						</div>
+						<div class="feedback" *ngIf="feedbackReady">
+							<span><strong>Feedback:</strong> {{ feedbacks[i]?.summary }}</span>
+						</div>
+						<button *ngIf="feedbackReady" type="button" class="modal-btn" (click)="openCorrectAnswer(i)">Show Correct Answer</button>
+						<!-- Correct Answer Modal -->
+						<div class="modal" *ngIf="showCorrectAnswerIndex === i">
+							<div class="modal-content">
+								<span class="close" (click)="closeCorrectAnswer()">&times;</span>
+								<h3>Correct Answer</h3>
+								<p>{{ feedbacks[i]?.correctAnswer }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button type="submit" [disabled]="submitting || feedbackReady" class="submit-btn">
+					<span *ngIf="!submitting">Submit Answers</span>
+					<span *ngIf="submitting" class="spinner"></span>
+				</button>
+			</form>
+		<div *ngIf="feedbackReady" class="done-msg">Interview complete! Review your feedback above.</div>
+	</div>
+</div>
