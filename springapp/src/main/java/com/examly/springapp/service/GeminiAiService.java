@@ -11,7 +11,7 @@ import java.util.*;
 @SuppressWarnings("unchecked")
 public class GeminiAiService {
     // @Value("${gemini.api.key}")
-    private String apiKey="AIzaSyCxyuAJQEYpE8dLdpz_lpUsUj2pAQmZfD8";
+    private String apiKey="YOUR_KEY";
 
     private static final String GEMINI_API_URL = "YOUR_URL";
 
